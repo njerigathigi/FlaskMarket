@@ -49,12 +49,15 @@
         </thead>
         <tbody>
             <!-- Your rows inside the table HERE: -->
+            {% for item in items %}
                 <tr>
                     <td>Value for Id</td>
                     <td>Value for Name</td>
                     <td>Value for Barcode</td>
                     <td>Value for Price</td>
                 </tr>
+            {% endfor %}
+            
         </tbody>
     </table>
 
