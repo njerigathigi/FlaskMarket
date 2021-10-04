@@ -5,6 +5,7 @@ app = Flask(__name__)
 db = SQLAlchemy(app)
 
 class Item(db.Model):
+    id = db.Column(db.integer(), primary_key=True)
     name = db.Column(db.String(length=30), nullable=False, unique=True)
     price = db.Column(db.Interger(), nullable=False)
     barcode = db.Column(db.String(length=12), nullable=False, unique=True)
