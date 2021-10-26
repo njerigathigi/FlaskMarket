@@ -24,5 +24,6 @@ def register_page():
                               password_hash=form.password1.data)
         db.session.add(user_to_create)
         db.session.commit()
+        return redirect(url_for(market_page))#expects a hardcoded url but url_for helps us navigate this.
 
     return render_template('register.html', form=form)
