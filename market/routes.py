@@ -1,5 +1,5 @@
 from market import app
-from flask import render_template, redirect, url for
+from flask import render_template, redirect, url_for
 from market.models import Item, User
 from market.forms import RegisterForm
 from market import db
