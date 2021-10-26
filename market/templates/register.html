@@ -4,10 +4,11 @@
     Register Page   
 {% endblock %}
 
-{% block content %}
+{% block content %} <!-- Cross Site Request Forgery(CSRF)-->
     <body style="text-align:center;">
         <div class="container form">
             <form method="POST", class="form-register", style="color:white;">
+                {{form.hidden_tag()}} <!--generates token to protect clients from CSRF-->
                 <img class="mb-4" src="https://res.cloudinary.com/jimshapedcoding/image/upload/v1597332609/android-icon-192x192_ove2a7.png" alt="">
                 <h1 class="h3 mb-3 font-weight-normal">
                     Please Create your Account
