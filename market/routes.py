@@ -14,11 +14,13 @@ def market_page():
     items = Item.query.all()
     return render_template("market.html", items=items)
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"]) #allow route to handle web requests.(post and get)
+ #get- send and the server returns data.
+ #post- used to send html form data to the server.
 def register_page():
     #generate secret key using import os, os.urandom(12).hex() in python shell.
     form = RegisterForm()
-    if form.validate_on_submit(): #checks if user has clicked on submit form
+    if form.validate_on_submit(): #checks if user has clicked on the submit button of the form.
         user_to_create = User(username=form.username.data,
                               email_address=form.email_address.data,
                               password_hash=form.password1.data)
