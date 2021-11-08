@@ -14,9 +14,10 @@ def market_page():
     items = Item.query.all()
     return render_template("market.html", items=items)
 
-@app.route("/register", methods=["GET", "POST"]) #allow route to handle web requests.(post and get)
+ #allow route to handle web requests.(post and get)
  #get- send and the server returns data.
  #post- used to send html form data to the server.
+@app.route("/register", methods=["GET", "POST"])
 def register_page():
     #generate secret key using import os, os.urandom(12).hex() in python shell.
     form = RegisterForm()
@@ -25,7 +26,9 @@ def register_page():
                               email_address=form.email_address.data,
                               password_hash=form.password1.data)
         db.session.add(user_to_create)
-        db.session.commit()
-        return redirect(url_for(market_page))#expects a hardcoded url but url_for helps us navigate this.
-
-    return render_template('register.html', form=form)
+        db.session.commit() 
+        return redirect(url_for("market_page"))#expects a hardcoded url but url_for helps us navigate this.
+    if form.errors != {}:
+        for error_message in form.errors.values():
+            print(f"There was an error with creating a user:{error_message}")
+    return render_template("register.html", form=form)
