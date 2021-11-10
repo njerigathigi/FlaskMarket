@@ -20,6 +20,8 @@ ie Instagram .GET(allows you to see different content-posts and memes)
 
 flask flash() method.
 -its good practice to give the user feedback for his/her actions.
+-Good applications and user interfaces are all about feedback. If the user 
+does not get enough feedback they will probably end up hating the application.
 -The Flask flash method shows messages to the users.
 -With Flash, we can create a flash message in one Flask View and then show
 it in another View, called “next,” which usually is a template View.
@@ -27,7 +29,7 @@ it in another View, called “next,” which usually is a template View.
 the next view( along with the request), which displays the message to the user.
 -The syntax for Flash:
      
-     flash(message,category)
+     flash(message,category) #keyword arguments
 
 message: The message to display.
 category: An Optional parameter, which can be set to “error,” “info,” or “warning.”
