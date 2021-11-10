@@ -28,8 +28,8 @@ def register_page():
         db.session.add(user_to_create)
         db.session.commit() 
         return redirect(url_for("market_page"))#expects a hardcoded url but url_for helps us navigate this.
-    if form.errors != {}:
-        for error_message in form.errors.values():
-            print(f"There was an error with creating a user:{error_message}")
+    if form.errors != {}: #this is a dictionary
+        for error_message in form.errors.values(): #can access values through the values() dict class method.
+            flash(f"There was an error with creating a user:{error_message}", category="danger") #error_message is a list.
     
     return render_template("register.html", form=form)
