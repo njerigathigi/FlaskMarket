@@ -41,3 +41,28 @@ and display it on the template, we use the get_flashed_messages() function.
 
 with_categories: An Optional Parameter tuple to mention the category(error/info/warning)
 category_filter: An Optional Parameter to filter and display only specific messages
+
+library vs modules vs package vs framework
+  module
+-In Python, Modules are simply files with the “. py” extension containing Python 
+code that can be imported inside another Python Program. In simple terms, 
+we can consider a module to be the same as a code library or a file that contains 
+a set of functions that you want to include in your application.
+  package
+-A package is basically a directory with Python files and a file with the name
+ __init__ . py. This means that every directory inside of the Python path,
+which contains a file named __init__ . py, will be treated as a package by Python. 
+It's possible to put several modules into a Package.
+-Python packages allow you to break down large systems and organize their 
+modules in a consistent way that you and other people can use and reuse efficiently. 
+Python's motto of "Batteries Included" means that it comes preloaded with lots of 
+useful packages in the standard library.
+  library
+-Library : It is a collection of modules. (Library either contains built 
+in modules(written in C) + modules written in python). Module : Each of a 
+set of standardized parts or independent units that can be used to construct a 
+more complex structure.
+  framework
+-Python Web framework is a collection of packages or modules that allow developers 
+to write Web applications or services. With it, developers don't need to handle 
+low-level details like protocols, sockets or process/thread management.
