@@ -66,3 +66,7 @@ more complex structure.
 -Python Web framework is a collection of packages or modules that allow developers 
 to write Web applications or services. With it, developers don't need to handle 
 low-level details like protocols, sockets or process/thread management.
+
+app.config('SECRET_KEY')
+-is commonly used for encryption with database connections and browser sessions. 
+WTForms will use the SECRET_KEY as a salt to create a CSRF token.
