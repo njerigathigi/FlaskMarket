@@ -71,8 +71,8 @@ In simple terms, we can consider a module to be the same as a code library or a 
   `package`
 
 A package is basically a directory with Python files and a file with the name
- __init__ .py . This means that every directory inside of the Python path,
-which contains a file named __init__.py , will be treated as a package by Python. 
+ `__init__ .py` . This means that every directory inside of the Python path,
+which contains a file named `__init__.py `, will be treated as a package by Python. 
 
 It's possible to put several modules into a Package.
 
@@ -153,7 +153,7 @@ _ can be used to name `variables, fuctions, classes.`
 - single pre underscore:- _variable
 - single post underscore:- variable_
 - double pre underscores:- __variable
-- double pre and post underscores:- __variable__
+- double pre and post underscores:- `__variable__`
 
 `_single_pre_underscore`
 
@@ -301,7 +301,7 @@ print(obj.return_name()) #print datacamp
 ```
 `Double Pre And Post Underscores`
 
-__name__
+`__name__`
 
 In Python, you will find different names which start and end with the double underscore. They are called as magic methods or dunder methods.
 
