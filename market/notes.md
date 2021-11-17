@@ -23,6 +23,7 @@ Each method corresponds to a different task:
 - ie Instagram: 
               `GET` -Allows you to see different content- posts and memes.
               `POST` -When you post a photo, you send information/data ,ie photo and caption, to the instagram application server.
+     
      Blog website:
              When you are reading a blog on the website, it is through the `GET` method. When you write and publish your blog, it is through the `POST` method. 
 
