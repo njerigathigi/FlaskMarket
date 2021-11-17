@@ -41,11 +41,16 @@
       <!-- Future Content here -->
       {% with messages = get_flashed_messages(with_categories=True)%} <!-- get_flashed_messages() returns the error messages as a tuple-->
           {% for category, message in messages %} <!--(category, message)-The default category value is 'message'. Here we unpack the tuple. -->
-              <p>{{message}}</p>
+              <div class="alert alert-{{ category }}">
+                  <button type="button", class="m1-2 close", data-dismiss="alert", aria-label="navbar-collapse">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                  {{message}}
+              </div>
           {% endfor %}
       {% endwith %}
       
-      {% block content %}
+      {% block content %} <!-- tells browser that child templates can override this section with custom code-->
       
       {% endblock %}
 
