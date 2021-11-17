@@ -155,6 +155,10 @@ _ can be used to name `variables, fuctions, classes.`
 - double pre underscores:- __variable
 - double pre and post underscores:- __variable__
 
+`_single_pre_underscore`
+
+_name
+
 Single pre underscore is used for internal use.(most of us do not use it for that reason)
 ```python
 class Test:
@@ -166,3 +170,139 @@ print(obj.name)
 print(obj._num)
 ```
 single pre underscore does not stop you from accessing the single pre underscore variable.
+
+It affects the names imported from the module
+```python
+##filename:- my_functions.py
+
+def func():
+
+  return "datacamp"
+
+def _private_func():
+  
+  return 7
+
+from my_functions import *
+
+func()
+
+_private_func() #returns an error
+```
+If you import all the methods and names from my_functions.py, Python doesn't import the names which starts with a single pre underscore.
+
+avoid the above error by importing the module normally.
+```python
+import my_functions
+
+myfunctions._private_func()
+```
+Single Pre Underscore is only meant to use for the internal use.
+
+`single_postunderscore`
+
+name_
+
+Sometimes if you want to use Python Keywords as a variable, function or class names, you can use this convention for that.
+
+You can avoid conflicts with the Python Keywords by adding an underscore at the end of the name which you want to use.
+```python
+def function(class_):
+  pass
+```
+Single Post Underscore is used for naming your variables as Python Keywords and to avoid the clashes by adding an underscore at last of your variable name.
+
+`Double Pre Underscore`
+
+__name
+
+Double Pre Underscores are used for the name mangling.
+
+Double Pre Underscores tells the Python interpreter to rewrite the attribute name of subclasses to avoid naming conflicts.
+
+- Name Mangling:- interpreter of the Python alters the variable name in a way that it is challenging to clash when the class is inherited.
+```python
+class Sample():
+  def __init__(self):
+    self.a = 1
+    self._b = 2
+    self.__c = 3
+
+obj1 = Sample()
+dir(obj1)
+print(obj1._Sample__c)
+```
+self.a variable appears in the list without any change.
+
+self._b Variable also appears in the list without any change.
+
+You will find an attribute called _Sample__c. This is the name mangling. It is to avoid the overriding of the variable in subclasses.
+
+Create another class by inheriting Sample class to see how overriding works.
+```python
+class SecondClass(Sample):
+  def __init__(self):
+    #The super() function is used to give access to methods and properties of a parent or sibling class
+    #The super() function returns an object that represents the parent class.
+    super().__init__()
+    self.a = "overridden"
+    self._b = "overridden"
+    self.__c = "overridden"
+
+obj2 = SecondClass()
+print(obj2.a)
+print(obj2._b)
+print(obj2.__c) #returns attribute error
+```
+name mangling changes the obj2.__c to _SecondClass__c. 
+```python
+print(obj2._SecondClass__c)
+```
+
+You can access the Double Pre Underscore variables using methods in the class. 
+```python
+class SimpleClass:
+  def __init__(self):
+    
+    self.__datacamp = "Excellent"
+  
+  def get_datacamp(self):
+    return self.__datacamp
+
+obj = SimpleClass()
+print(obj.get_datacamp()) #prints Excellent which is a __var
+print(obj.__datacamp) #returns attribute error.
+```
+Double Pre Underscore can also be used for the method names
+```python
+class SimpleClass():
+  
+  def __datacamp(self):
+    return "Excellent"
+  
+  def call_datacamp(self):
+    return self.__datacamp()
+
+obj = SimpleClass()
+print(obj.__datacamp()) #return attribute error
+print(obj.call_datacamp())
+```
+create a variable with name `_SimpleClass__name`, and then we will try to access that variable using Double Pre Underscore name.
+```python
+_SimpleClass__name = "datacamp"
+
+class SimpleClass:
+  
+  def return_name(self):
+    return __name
+
+obj = SimpleClass()
+print(obj.return_name()) #print datacamp
+```
+`Double Pre And Post Underscores`
+
+__name__
+
+In Python, you will find different names which start and end with the double underscore. They are called as magic methods or dunder methods.
+
+This will lead to the clashes if you use these methods as your variable names. So, it's better to stay away from them.
