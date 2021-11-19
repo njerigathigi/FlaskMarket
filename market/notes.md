@@ -306,3 +306,157 @@ print(obj.return_name()) #print datacamp
 In Python, you will find different names which start and end with the double underscore. They are called as magic methods or dunder methods.
 
 This will lead to the clashes if you use these methods as your variable names. So, it's better to stay away from them.
+
+`Property vs. Getters and Setters in Python`
+
+- `Getters`:- These are the methods used in Object-Oriented Programming (OOPS) which helps to access the private attributes from a class.
+
+- `Setters`:- These are the methods used in OOPS feature which helps to set the value to private attributes in a class.
+
+`Private Attribute - Encapsulation`
+```python
+class SampleClass:
+    def __init__(self, a):
+    #private variable or property in python
+        self.__a = a #it has been mangled
+ 
+    #getter method to get the properties using an object
+    def get_a(self):
+        return self.__a
+    
+    #setter method to change the value 'a' using an object.
+    def set_a(self, a):
+        self.__a = a
+```
+- `__init__`:- It is used to initialize the attributes or properties of a class.
+
+-  __a:- It is a private attribute.
+
+- get_a:- It is used to get the values of private attribute a.
+
+- set_a:- It is used to set the value of a using an object of a class.
+
+You are not able to access the private variables directly in Python.
+
+This is how you implement private attributes, getters, and setters in Python.
+```python
+class PythonicWay:
+    def __init__(self, a):
+        self.a = a
+obj = PythonicWay(100)
+print(obj.a)
+```
+
+`What's the difference between the above two classes.`
+
+- SampleClass hides the private attributes and methods. It implements the encapsulation feature of OOPS.
+
+- PythonicWay doesn't hide the data. It doesn't implement any encapsulation feature.
+
+`What's  better to use?`
+
+If you want private attributes and methods you can implement the class using setters, getters methods otherwise , implement the normal way.
+
+`Property`
+
+What if you want to have some conditions to set the value of an attribute in the SampleClass.
+```python
+class SampleClass1:
+  def __init__(self, a):
+    #calling the set_a() method to set the value of a by checking certain conditions.
+    self.set_a(a)
+  
+  # getter method to get the property using an object
+  def get_a(self):
+    return self.__a
+  
+  # setter method to change the value "a" using an object
+  def set_a(self, a):
+
+    #condition to check whether "a" is suitable or not.
+    if a > 0 and a % 2 == 0:
+      self.__a = a
+    else:
+      self.__a = 2
+
+obj = SampleClass(16)
+print(obj.get_a())
+```
+How to implement the above class using the @property decorator.
+```python
+class Property:
+  def __init__(self, var):
+    #initializing the attribute
+  self.a = var
+
+  @property
+  def a(self):
+    return self.__a
+  
+  #the attribute name and the method name must be the same.
+  @a.setter
+  def a(self, var):
+    if var > 2 and var != 0:
+      self.__a = var
+    else:
+      self.__a = 2
+
+obj = Property(23)
+print(obj.a)
+```
+@property is used to get the value of a private attribute without using any getter methods. We have to put a line @property in front of the method where we return the private variable.
+
+To set the value of the private variable, we use @method_name.setter in front of the method. We have to use it as a setter.
+
+@a.setter will set the value of a by checking the conditions we have mentioned in the method.
+```python
+class AnotherWay:
+  def __init__(self, var):
+    #calling the set_a() method to set the value "a" by checking certain conditions
+    self.set_a(var)
+  
+  #getter method to get the properties using an object.
+  def get_a(self):
+    return self.__a
+  
+  #setter method to change the value 'a' using an object
+  def set a(self, var):
+    
+    #condition to check whether var is suitable
+    if var > 2 and var % 2 == 0:
+      self.__a = var
+    else:
+      self.__a = 2
+
+  a = property(get_a, set_a)
+
+obj =  AnotherWay(28)
+print(obj.a)
+```
+Pass all the getter and setter methods to the property and assign it to the variable which you have to use as a class attribute.
+
+Make the setter and getter methods as private to hide them.
+```python
+class FinalClass:
+    def __init__(self,var):
+        ## calling the set_a() method to set the value 'a' by checking certain conditions
+        self.__set_a(var)
+    
+    ## getter method to get the properties using an object
+    def __get_a(self):
+        return self.__a
+
+    ## setter method to change the value 'a' using an object
+    def __set_a(self, var):
+      
+      ## condition to check whether var is suitable or not
+      if var > 2 and var % 2 == 0:
+        self.__a = var
+      else:
+        self.__a = 2
+
+    a = property(__get_a, __set_a)
+
+obj = FinalClass(26)
+print(obj.a)
+```
