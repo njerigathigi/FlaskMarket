@@ -460,3 +460,39 @@ class FinalClass:
 obj = FinalClass(26)
 print(obj.a)
 ```
+```python
+class Portal:
+  def __init__(self):
+    self.__name = ""
+  
+  #using @property decorator
+  @property
+  def name(self):
+      return self.__name
+  
+  #setter method
+  @name.setter
+  def name(self, var):
+    self.__name = var
+  
+  #deleter method
+  @name.deleter
+  def name(self):
+    del self.__name
+
+#creating object
+p = Portal()
+
+#setting name
+p.name = "Unicorn"
+
+#prints name
+print(p.name)
+
+#deletes name
+del p.name
+
+#as name is deleted above this will throw an error.
+print(p.name)
+```
+Here, the @property decorator is used to define the property name in the class Portal, that has three methods(getter, setter, and deleter) with similar names i.e, name(), but they have different number of parameters. Where, the method name(self) labeled with @property is a getter method, name(self, val) is a setter method as it is used to set the value of the attribute __name and so its labeled with @name.setter. Lastly, the method labeled with @name.deleter is a deleter method which can delete the assigned value by the setter method. However, deleter is invoked with the help of a keyword del.
