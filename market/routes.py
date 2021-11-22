@@ -33,3 +33,7 @@ def register_page():
             flash(f"There was an error with creating a user:{error_message}", category="danger") #error_message is a list.
     
     return render_template("register.html", form=form)
+
+@app.route("/login", methods=["GET", "POST"])
+def login_page():
+    return render_template("login.html")
