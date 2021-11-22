@@ -21,6 +21,11 @@ class RegisterForm(FlaskForm):
     password2 = PasswordField(label="Confirm Password:", validators=[EqualTo("password1"), DataRequired()])
     submit = SubmitField(label="Create Account")
 
+class LoginForm(FlaskForm):
+    username = StringField(label="Username:", validations=[DataRequired()])
+    password = PasswordField(label="Password:", validations=[DataRequired()])
+    submit = SubmitField(label="Sign In")
+
 #WTForms is a flexible forms validation and rendering library for Python web 
 #development. It can work with whatever web framework and template engine you 
 #choose. It supports data validation, CSRF protection, internationalization (I18N), 
