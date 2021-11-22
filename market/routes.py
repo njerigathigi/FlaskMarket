@@ -1,9 +1,10 @@
 from market import app
 from flask import render_template, redirect, url_for, flash
 from market.models import Item, User
-from market.forms import RegisterForm
+from market.forms import RegisterForm, LoginForm
 from market import db
-
+from flask_login import login_user
+ 
 @app.route("/")
 @app.route("/home")
 def home_page():
@@ -21,7 +22,7 @@ def market_page():
 def register_page():
     #generate secret key using import os, os.urandom(12).hex() in python shell.
     form = RegisterForm()
-    if form.validate_on_submit(): #checks if user has clicked on the submit button of the form.
+    if form.validate_on_submit(): #checks if user has clicked on the submit button of the form. #info is validated
         user_to_create = User(username=form.username.data,
                               email_address=form.email_address.data,
                               password_hash=form.password1.data)
@@ -36,4 +37,14 @@ def register_page():
 
 @app.route("/login", methods=["GET", "POST"])
 def login_page():
-    return render_template("login.html")
+    form = LoginForm()
+    if form.validate_on_submit():
+        attempted_user = User.query.get(form.username.data).first()
+        if attempted_user and attempted_user.check_password_correctness(form.password.data):
+            login_user(attempted_user)
+            flash(f"Success! You are logged in as: {attempted_user.username}", category="success")
+            return redirect(url_for("market_page"))
+        else:
+            flash("Username and Password are not a match! Please try again", category="danger")
+            
+    return render_template("login.html", form=form)
