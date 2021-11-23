@@ -11,9 +11,15 @@ app.config["SECRET_KEY"] = 'd65c5cbc4d268a8a431a06d5' #The secret key is needed 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
-login_manager.login_view = "login_page" #tells login_required where the login page is
-                                        #pass name of login route in lowercase
+login_manager.login_view = "login_page"     #tells login_required where the login page is located.
+                                            #pass the name of login route in lowercase
+
+login_manager.login_message_category = "info"   #login_required automatically displays a flash message .
+                                                #setting the category message to info enables bootsrap to style
+                                                #the flash message.
+
 from market import routes
+
 
 #A directory must contain a file named __init__.py in order for Python 
 #to consider it as a package. This file can be left empty but we generally 
