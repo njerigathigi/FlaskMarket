@@ -11,7 +11,8 @@ app.config["SECRET_KEY"] = 'd65c5cbc4d268a8a431a06d5' #The secret key is needed 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
-
+login_manager.login_view = "login_page" #tells login_required where the login page is
+                                        #pass name of login route in lowercase
 from market import routes
 
 #A directory must contain a file named __init__.py in order for Python 
