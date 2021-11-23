@@ -28,7 +28,9 @@ def register_page():
                               email_address=form.email_address.data,
                               password=form.password1.data)
         db.session.add(user_to_create)
-        db.session.commit() 
+        db.session.commit()
+        login_user(user_to_create)
+        flash(f"Account created successfully! You are now logged in as {user_to_create.username}", category="success")
         return redirect(url_for("market_page"))#expects a hardcoded url but url_for helps us navigate this.
     if form.errors != {}: #this is a dictionary
         for error_message in form.errors.values(): #can access values through the values() dict class method.
