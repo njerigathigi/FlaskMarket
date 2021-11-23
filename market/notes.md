@@ -496,3 +496,12 @@ del p.name
 print(p.name)
 ```
 Here, the @property decorator is used to define the property name in the class Portal, that has three methods(getter, setter, and deleter) with similar names i.e, name(), but they have different number of parameters. Where, the method name(self) labeled with @property is a getter method, name(self, val) is a setter method as it is used to set the value of the attribute __name and so its labeled with @name.setter. Lastly, the method labeled with @name.deleter is a deleter method which can delete the assigned value by the setter method. However, deleter is invoked with the help of a keyword del.
+
+`flask login`
+`load_user`
+
+Flask-login will try and load a user BEFORE every request. Your code will be called before every request. It is used to check what userid is in the current session and will load the user object for that id.
+
+load_user is critical for making our app work: before every page load, our app must verify whether or not the user is logged in (or still logged in after time has elapsed). user_loader loads users by their unique ID. If a user is returned, this signifies a logged-in user. Otherwise, when None is returned, the user is logged out.
+
+Flask-Login can manage user sessions. Start by adding the UserMixin to your User model. The UserMixin will add Flask-Login attributes to the model so that Flask-Login will be able to work with it.
