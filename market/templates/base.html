@@ -58,7 +58,7 @@
         </div>
       </nav>
       <!-- Future Content here -->
-      {% with messages = get_flashed_messages(with_categories=True)%} <!-- get_flashed_messages() returns the error messages as a tuple-->
+      {% with messages = get_flashed_messages(with_categories=True)%} <!-- get_flashed_messages() returns flashed messages as a tuple-->
           {% for category, message in messages %} <!--(category, message)-The default category value is 'message'. Here we unpack the tuple. -->
               <div class="alert alert-{{ category }}">
                   <button type="button", class="m1-2 close", data-dismiss="alert", aria-label="navbar-collapse">
