@@ -505,3 +505,50 @@ Flask-login will try and load a user BEFORE every request. Your code will be cal
 load_user is critical for making our app work: before every page load, our app must verify whether or not the user is logged in (or still logged in after time has elapsed). user_loader loads users by their unique ID. If a user is returned, this signifies a logged-in user. Otherwise, when None is returned, the user is logged out.
 
 Flask-Login can manage user sessions. Start by adding the UserMixin to your User model. The UserMixin will add Flask-Login attributes to the model so that Flask-Login will be able to work with it.
+`installation`
+
+```python
+pip install flask-login
+```
+The most important part of an application that uses `Flask-Login` is the `LoginManager` class. 
+
+```python
+login_manager = LoginManager(app)
+```
+The login manager contains the code that lets your application and Flask-Login work together, such as how to load a user from an ID, where to send users when they need to log in, and the like.
+
+By default, Flask-Login uses sessions for authentication. This means you must set the `secret key` on your application, otherwise Flask will give you an error message telling you to do so.
+
+Each Flask web application contains a `secret key` which used to sign session cookies for protection against cookie data tampering. It's very important that an attacker doesn't know the value of this secret key.
+
+`How it Works`
+
+You will need to provide a `user_loader` callback. This callback is used to reload the user object from the user ID stored in the session. It should take the unicode ID of a user, and return the corresponding user object.
+```python
+@login_manager.user_loader
+def load_user(user_id):
+  return User.get(user_id)
+```
+It should return None (not raise an exception) if the ID is not valid. (In that case, the ID will manually be removed from the session and processing will continue.)
+
+`Your User Class`
+
+The class that you use to represent users needs to implement these properties and methods:
+
+`is_authenticated`
+
+This property should return True if the user is authenticated, i.e. they have provided valid credentials. (Only authenticated users will fulfill the criteria of login_required.)
+
+`is_active`
+
+This property should return True if this is an active user - in addition to being authenticated, they also have activated their account, not been suspended, or any condition your application has for rejecting an account. Inactive accounts may not log in (without being forced of course).
+
+`is_anonymous`
+
+This property should return True if this is an anonymous user. (Actual users should return False instead.)
+
+`get_id()`
+
+This method must return a unicode that uniquely identifies this user, and can be used to load the user from the user_loader callback. **Note that this must be a unicode - if the ID is natively an int or some other type, you will need to convert it to unicode.**
+
+To make implementing a user class easier, you can inherit from UserMixin, which provides default implementations for all of these properties and methods. (It’s not required, though.)
