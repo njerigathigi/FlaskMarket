@@ -43,8 +43,10 @@
            </button>
          </div>
          <div class="modal-body">
-          Are you sure that you want to purchase {{ item.name }} at {{ item.price }}$ ?
           <form method="POST">
+            <h4>
+              Are you sure that you want to purchase {{ item.name }} at {{ item.price }}$ ?
+            </h4>
             {{ purchase_form.hidden_tag() }}
             {{ purchase_form.submit() }}
           </form>
