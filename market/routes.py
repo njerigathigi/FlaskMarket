@@ -10,11 +10,14 @@ from flask_login import login_user, logout_user, login_required
 def home_page():
     return render_template("home.html")
 
-@app.route("/market")
+@app.route("/market", methods=["GET", "POST"])
 @login_required
 def market_page():
 
     purchase_form = PurchaseItemForm()
+    if purchase_form.validate_on_submit:
+        print(purchase_form.__dict__)
+
     items = Item.query.all()
     return render_template("market.html", items=items, purchase_form=purchase_form)
 
