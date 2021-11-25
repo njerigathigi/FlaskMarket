@@ -44,6 +44,10 @@
          </div>
          <div class="modal-body">
           Are you sure that you want to purchase {{ item.name }} at {{ item.price }}$ ?
+          <form method="POST">
+            {{ purchase_form.hidden_tag() }}
+            {{ purchase_form.submit() }}
+          </form>
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -51,4 +55,3 @@
        </div>
      </div>
  </div>
- 
