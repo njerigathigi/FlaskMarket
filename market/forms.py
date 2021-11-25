@@ -26,6 +26,12 @@ class LoginForm(FlaskForm):
     password = PasswordField(label="Password:", validators=[DataRequired()])
     submit = SubmitField(label="Sign In")
 
+class PurchaseItemForm(FlaskForm):
+    submit = SubmitField(label="Purchase Item!")
+
+class SellItemForm(FlaskForm):
+    submit = SubmitField(label="Sell Item!")
+
 #WTForms is a flexible forms validation and rendering library for Python web 
 #development. It can work with whatever web framework and template engine you 
 #choose. It supports data validation, CSRF protection, internationalization (I18N), 
