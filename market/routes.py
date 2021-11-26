@@ -16,7 +16,7 @@ def market_page():
 
     purchase_form = PurchaseItemForm()
     if purchase_form.validate_on_submit:
-        print(purchase_form["submit"])
+        print(purchase_form["purchase_item"])
 
     items = Item.query.all()
     return render_template("market.html", items=items, purchase_form=purchase_form)
