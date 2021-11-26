@@ -50,6 +50,7 @@
                   By clicking Purchase, you will purchase this item.
               </h6 class="text-center">
               <br>
+              <input id="purchase_item" name="purchase_item" type="hidden" value="{{ item.name }}">
               {{ purchase_form.submit(class="btn btn-outline-success btn-block") }}
            </form>
         </div>
