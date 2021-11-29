@@ -22,10 +22,8 @@ def market_page():
         if purchased_item_object:
             
             if current_user.can_purchase(purchased_item_object):
-                purchased_item_object.owner = current_user.id
-                current_user.budget -= purchased_item_object.price
-                db.session.commit()
-                flash(f"Congratulations! You purchased {purchased_item_object.name} for {purchased_item_object.price}", category="success")
+                purchased_item_object.buy(current_user)
+                flash(f"Congratulations! You purchased {purchased_item_object.name} for {purchased_item_object.price}$", category="success")
             else:
                 flash(f"Unfortunately, you do not have enough money to purchase {purchased_item_object.name}", category="danger")
         
