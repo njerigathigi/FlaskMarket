@@ -19,6 +19,7 @@ def market_page():
         purchased_item = request.form.get("purchase_item")
         purchased_item_object = Item.query.filter_by(name="purchased_item").first()
         if purchased_item_object:
+            purchased_item_object.owner = current_user.id
 
 
     items = Item.query.all()
