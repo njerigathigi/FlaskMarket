@@ -18,6 +18,8 @@ def market_page():
     if request.method == "POST":
         purchased_item = request.form.get("purchase_item")
         purchased_item_object = Item.query.filter_by(name="purchased_item").first()
+        if purchased_item_object:
+            
 
     items = Item.query.all()
     return render_template("market.html", items=items, purchase_form=purchase_form)
