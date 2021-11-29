@@ -21,7 +21,7 @@ def market_page():
         if purchased_item_object:
             purchased_item_object.owner = current_user.id
             current_user.budget -= purchased_item_object.price
-
+            db.session.commit()
 
     items = Item.query.all()
     return render_template("market.html", items=items, purchase_form=purchase_form)
