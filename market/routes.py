@@ -23,9 +23,10 @@ def market_page():
             current_user.budget -= purchased_item_object.price
             db.session.commit()
             flash(f"Congratulations! You purchased {purchased_item_object.name} for {purchased_item_object.price}")
-
-    items = Item.query.filter_by(owner=None) #display available items only(without owner)
-    return render_template("market.html", items=items, purchase_form=purchase_form)
+    
+    if request.method == "GET":
+        items = Item.query.filter_by(owner=None) #display available items only(without owner)
+        return render_template("market.html", items=items, purchase_form=purchase_form)
 
  #allow route to handle web requests.(post and get)
  #get- send and the server returns data.
