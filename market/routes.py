@@ -17,7 +17,7 @@ def market_page():
     purchase_form = PurchaseItemForm()
     if request.method == "POST":
         purchased_item = request.form.get("purchase_item")
-        purchased_item_object = Item.query.filter_by(name="purchased_item").first()
+        purchased_item_object = Item.query.filter_by(name=purchased_item).first()
         if purchased_item_object:
             purchased_item_object.owner = current_user.id
             current_user.budget -= purchased_item_object.price
