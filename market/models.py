@@ -45,5 +45,10 @@ class Item(db.Model):
 
     def __repr__(self):
         return f"{self.name}"
+    
+    def buy(self, user):
+        self.owner = user.id
+        user.budget -= self.price
+        db.session.commit()
 
 #The first() method returns the first element of the selected elements.
