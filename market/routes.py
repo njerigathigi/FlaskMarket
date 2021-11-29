@@ -3,7 +3,7 @@ from flask import render_template, redirect, url_for, flash, request
 from market.models import Item, User
 from market.forms import RegisterForm, LoginForm, PurchaseItemForm
 from market import db
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
  
 @app.route("/")
 @app.route("/home")
@@ -19,7 +19,7 @@ def market_page():
         purchased_item = request.form.get("purchase_item")
         purchased_item_object = Item.query.filter_by(name="purchased_item").first()
         if purchased_item_object:
-            
+
 
     items = Item.query.all()
     return render_template("market.html", items=items, purchase_form=purchase_form)
