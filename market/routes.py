@@ -23,7 +23,7 @@ def market_page():
             current_user.budget -= purchased_item_object.price
             db.session.commit()
 
-    items = Item.query.all()
+    items = Item.query.filter_by(owner=None)
     return render_template("market.html", items=items, purchase_form=purchase_form)
 
  #allow route to handle web requests.(post and get)
