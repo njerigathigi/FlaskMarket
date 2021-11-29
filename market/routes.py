@@ -20,6 +20,7 @@ def market_page():
         purchased_item_object = Item.query.filter_by(name="purchased_item").first()
         if purchased_item_object:
             purchased_item_object.owner = current_user.id
+            current_user.budget -= purchased_item_object.price
 
 
     items = Item.query.all()
