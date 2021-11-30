@@ -28,8 +28,17 @@ def market_page():
                 flash(f"Congratulations! You purchased {purchased_item_object.name} for {purchased_item_object.price}$", category="success")
             else:
                 flash(f"Unfortunately, you do not have enough money to purchase {purchased_item_object.name}", category="danger")
+        #sold item logic
+        sold_item = request.form.get("sold_item")
+        sold_item_object = Item.query.filter_by(name=sold_item)
         
         return redirect(url_for("market_page"))
+
+        
+
+
+
+
     
     if request.method == "GET":
         items = Item.query.filter_by(owner=None) #display available items only(without owner)
