@@ -19,6 +19,7 @@ def market_page():
     
     if request.method == "POST":
         purchased_item = request.form.get("purchase_item")
+        print(purchased_item)
         purchased_item_object = Item.query.filter_by(name=purchased_item).first()
         
         if purchased_item_object:
@@ -32,12 +33,13 @@ def market_page():
         #sold item logic
         sold_item = request.form.get("sold_item")
         sold_item_object = Item.query.filter_by(name=sold_item).first()
-        
-        if current_user.can_sell(sold_item_object):
-            sold_item_object.sell(current_user)
-            flash(f"Congratulations! You sold {sold_item_object.name} back to the market!", category="success")
-        else:
-            flash(f"Something went wrong with selling{sold_item_object.name}", category="danger")
+        if sold_item_object:
+            
+            if current_user.can_sell(sold_item_object):
+                sold_item_object.sell(current_user)
+                flash(f"Congratulations! You sold {sold_item_object.name} back to the market!", category="success")
+            else:
+                flash(f"Something went wrong with selling the Item!", category="danger")
         
         return redirect(url_for("market_page"))
 
