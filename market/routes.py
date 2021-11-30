@@ -33,13 +33,7 @@ def market_page():
         sold_item_object = Item.query.filter_by(name=sold_item)
         
         return redirect(url_for("market_page"))
-
         
-
-
-
-
-    
     if request.method == "GET":
         items = Item.query.filter_by(owner=None) #display available items only(without owner)
         owned_items = Item.query.filter_by(owner=current_user.id)
