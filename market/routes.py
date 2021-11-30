@@ -35,6 +35,8 @@ def market_page():
         if current_user.can_sell(sold_item_object):
             sold_item_object.sell(current_user)
             flash(f"Congratulations! You sold {sold_item_object.name} back to the market!", category="success")
+        else:
+            flash(f"Something went wrong with selling{sold_item_object.name}", category="danger")
         
         return redirect(url_for("market_page"))
 
