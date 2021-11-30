@@ -34,7 +34,7 @@ def market_page():
     if request.method == "GET":
         items = Item.query.filter_by(owner=None) #display available items only(without owner)
         owned_items = Item.query.filter_by(owner=current_user.id)
-        return render_template("market.html", items=items, purchase_form=purchase_form, owned_items=owned_items)
+        return render_template("market.html", items=items, purchase_form=purchase_form, owned_items=owned_items, selling_form=selling_form)
 
  #allow route to handle web requests.(post and get)
  #get- send and the server returns data.
